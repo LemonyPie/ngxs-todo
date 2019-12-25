@@ -4,7 +4,8 @@ import {ITodo, Todo} from './todo.actions';
 import Add = Todo.Add;
 import ToggleStatus = Todo.ToggleStatus;
 import {Injectable} from '@angular/core';
-import {patch, updateItem} from '@ngxs/store/operators';
+import {patch, removeItem, updateItem} from '@ngxs/store/operators';
+import Delete = Todo.Delete;
 
 const defaultTodoState: ITodoStateModel = {
   todoList: []
@@ -25,8 +26,7 @@ export class TodoState {
     const state = ctx.getState();
     const todo = new TodoItem(action.name);
 
-    ctx.setState({
-      ...state,
+    ctx.patchState({
       todoList: [
         ...state.todoList,
         todo
@@ -37,9 +37,16 @@ export class TodoState {
   @Action(ToggleStatus) toggleStatus(ctx: StateContext<ITodoStateModel>, action: ToggleStatus) {
     ctx.setState(
       patch({
-        todoList: updateItem<ITodo>(item => item.id === action.id, item => ({...item, completed: !item.completed}))
+        todoList: updateItem<ITodo>(({id}) => id === action.id, item => ({...item, completed: !item.completed}))
       })
     );
   }
 
+  @Action(Delete) delete(ctx: StateContext<ITodoStateModel>, action: Delete) {
+    ctx.setState(
+      patch({
+        todoList: removeItem<ITodo>(({id}) => id === action.id)
+      })
+    )
+  }
 }
