@@ -1,26 +1,30 @@
+import {uuid} from '../../app/app.utils';
+
 export interface ITodo {
+  id: uuid;
   name: string;
   completed: boolean;
 }
+
 export namespace Todo {
   export class Add {
     static readonly type = '[Todo] Add';
-    constructor(public name: string) { }
+    constructor(public readonly name: string) { }
   }
 
   export class Delete {
     static readonly type = '[Todo] Delete';
-    constructor(public id: number) { }
+    constructor(public readonly id: number) { }
   }
 
   export class ToggleStatus {
     static readonly type = '[Todo] Toggle Status';
-    constructor(public id: number) { }
+    constructor(public readonly id: number) { }
   }
 
   export class Rename {
     static readonly type = '[Todo] Rename';
-    constructor(public id: number, name: string) { }
+    constructor(public readonly id: number, public readonly name: string) { }
   }
 
   export class FetchAll {
