@@ -1,7 +1,7 @@
 import {Component, OnInit, ChangeDetectionStrategy, Input, HostListener, EventEmitter, Output} from '@angular/core';
 import {ITodo} from '../../stores/todo/todo.actions';
 import {faCheckSquare, faSquare } from '@fortawesome/free-regular-svg-icons';
-import {faTimesCircle} from '@fortawesome/free-solid-svg-icons';
+import {faTimesCircle, faExternalLinkSquareAlt} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-todo',
@@ -15,10 +15,12 @@ export class TodoComponent implements OnInit {
   @Input() todo: ITodo;
   @Output() toggle = new EventEmitter<ITodo['id']>();
   @Output() delete = new EventEmitter<ITodo['id']>();
+  @Output() open = new EventEmitter<ITodo['id']>();
 
   completeIcon = faCheckSquare;
   incompleteIcon = faSquare;
   deleteIcon = faTimesCircle;
+  openIcon = faExternalLinkSquareAlt;
 
   handleToggle() {
     this.toggle.emit(this.todo.id);
@@ -28,7 +30,10 @@ export class TodoComponent implements OnInit {
     this.delete.emit(this.todo.id);
   }
 
-  ngOnInit() {
+  handleOpenTodo() {
+    this.open.emit(this.todo.id);
   }
+
+  ngOnInit() {}
 
 }
