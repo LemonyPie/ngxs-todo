@@ -22,6 +22,12 @@ export class TodoState {
     return state.todoList;
   }
 
+  @Selector() static todo(state: ITodoStateModel) {
+    return (id: ITodo['id']) => {
+      return state.todoList.find(todo => id === todo.id);
+    };
+  }
+
   @Action(Add) add(ctx: StateContext<ITodoStateModel>, action: Add) {
     const state = ctx.getState();
     const todo = new TodoItem(action.name);

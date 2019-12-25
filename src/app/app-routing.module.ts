@@ -1,6 +1,9 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {TodosComponent} from './todos/todos.component';
+import {TodoComponent} from './todo/todo.component';
+import {TodoDetailsResolver} from './todo-details.resolver';
+import {TodoDetailsComponent} from './todo-details/todo-details.component';
 
 
 const routes: Routes = [
@@ -11,7 +14,10 @@ const routes: Routes = [
   },
   {
     path: 'todos/:id',
-    component: TodosComponent
+    component: TodoDetailsComponent,
+    resolve: {
+      todo: TodoDetailsResolver
+    }
   }
 ];
 

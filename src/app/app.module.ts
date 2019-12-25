@@ -12,6 +12,8 @@ import {NgxsModule} from '@ngxs/store';
 import {TodoState} from '../stores/todo/todo.state';
 import {ReactiveFormsModule} from '@angular/forms';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {TodoDetailsResolver} from './todo-details.resolver';
+import { TodoDetailsComponent } from './todo-details/todo-details.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,8 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     TodoComponent,
     TodoListComponent,
     AddTodoComponent,
-    TodosComponent
+    TodosComponent,
+    TodoDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +32,9 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
     NgxsModule.forRoot([TodoState]),
     NgxsReduxDevtoolsPluginModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    TodoDetailsResolver
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

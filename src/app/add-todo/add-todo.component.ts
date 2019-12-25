@@ -21,7 +21,7 @@ export class AddTodoComponent implements OnInit {
   }
 
   handleSubmit() {
-    if(this.addTodoForm.valid) {
+    if (this.addTodoForm.valid) {
       this.store.dispatch(new Add(this.addTodoForm.value.name)).subscribe(() => this.addTodoForm.reset());
     }
   }

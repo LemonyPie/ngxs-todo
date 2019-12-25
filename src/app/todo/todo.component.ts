@@ -9,13 +9,11 @@ import {faTimesCircle, faExternalLinkSquareAlt} from '@fortawesome/free-solid-sv
   styleUrls: ['./todo.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TodoComponent implements OnInit {
-
-  constructor() { }
+export class TodoComponent {
   @Input() todo: ITodo;
   @Output() toggle = new EventEmitter<ITodo['id']>();
   @Output() delete = new EventEmitter<ITodo['id']>();
-  @Output() open = new EventEmitter<ITodo['id']>();
+  @Output() opened = new EventEmitter<ITodo['id']>();
 
   completeIcon = faCheckSquare;
   incompleteIcon = faSquare;
@@ -31,9 +29,6 @@ export class TodoComponent implements OnInit {
   }
 
   handleOpenTodo() {
-    this.open.emit(this.todo.id);
+    this.opened.emit(this.todo.id);
   }
-
-  ngOnInit() {}
-
 }
