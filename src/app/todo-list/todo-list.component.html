@@ -1,4 +1,5 @@
 <app-todo
   *ngFor="let todo of (todos$ | async)"
   [todo]="todo"
+  (toggle)="handleTodoToggle($event)"
 ></app-todo>

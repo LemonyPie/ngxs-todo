@@ -2,7 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import {Select, Store} from '@ngxs/store';
 import {TodoState} from '../../stores/todo/todo.state';
 import {Observable} from 'rxjs';
-import {ITodo} from '../../stores/todo/todo.actions';
+import {ITodo, Todo} from '../../stores/todo/todo.actions';
+import ToggleStatus = Todo.ToggleStatus;
 
 @Component({
   selector: 'app-todo-list',
@@ -12,9 +13,13 @@ import {ITodo} from '../../stores/todo/todo.actions';
 })
 export class TodoListComponent implements OnInit {
   @Select(TodoState.todoList) todos$: Observable<ITodo[]>;
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit() {
+  }
+
+  handleTodoToggle(id: ITodo['id']) {
+    this.store.dispatch(new ToggleStatus(id));
   }
 
 }

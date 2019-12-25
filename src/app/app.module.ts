@@ -11,6 +11,7 @@ import { TodosComponent } from './todos/todos.component';
 import {NgxsModule} from '@ngxs/store';
 import {TodoState} from '../stores/todo/todo.state';
 import {ReactiveFormsModule} from '@angular/forms';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import {ReactiveFormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    FontAwesomeModule,
     NgxsModule.forRoot([TodoState]),
     NgxsReduxDevtoolsPluginModule.forRoot()
   ],

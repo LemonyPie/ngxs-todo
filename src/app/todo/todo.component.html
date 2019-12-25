@@ -1,1 +1,5 @@
+<ng-container *ngIf="todo.completed then complete else incomplete"></ng-container>
 {{ todo.name }}
+
+<ng-template #complete><fa-icon [icon]="completeIcon"></fa-icon></ng-template>
+<ng-template #incomplete><fa-icon [icon]="incompleteIcon"></fa-icon></ng-template>
