@@ -1,13 +1,13 @@
 <span (click)="handleToggle()">
   <ng-container *ngIf="todo.completed then complete else incomplete"></ng-container>
-  <ng-template #complete><fa-icon [icon]="completeIcon"></fa-icon></ng-template>
-  <ng-template #incomplete><fa-icon [icon]="incompleteIcon"></fa-icon></ng-template>
-  {{ todo.name }}
+  <ng-template #complete><fa-icon [icon]="completeIcon" class="complete-icon"></fa-icon></ng-template>
+  <ng-template #incomplete><fa-icon [icon]="incompleteIcon" class="incomplete-icon"></fa-icon></ng-template>
+  <span class="todo-name">{{ todo.name }}</span>
 </span>
-<span (click)="handleDelete()">
+<span (click)="handleDelete()" class="delete">
   <fa-icon [icon]="deleteIcon"></fa-icon>
 </span>
 &nbsp;|&nbsp;
-<span (click)="handleOpenTodo()">
+<span (click)="handleOpenTodo()" class="open">
   <fa-icon [icon]="openIcon"></fa-icon>
 </span>
