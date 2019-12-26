@@ -113,10 +113,35 @@
           }
         },
         "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
+          "builder": "@briebug/cypress-schematic:cypress",
           "options": {
-            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "ngxs-todo:serve",
+            "watch": true,
+            "headless": false
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngxs-todo:serve:production"
+            }
+          }
+        },
+        "cypress-run": {
+          "builder": "@briebug/cypress-schematic:cypress",
+          "options": {
             "devServerTarget": "ngxs-todo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngxs-todo:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@briebug/cypress-schematic:cypress",
+          "options": {
+            "devServerTarget": "ngxs-todo:serve",
+            "watch": true,
+            "headless": false
           },
           "configurations": {
             "production": {
@@ -125,6 +150,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "ngxs-todo"
 }
